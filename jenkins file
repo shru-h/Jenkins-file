@@ -1,0 +1,32 @@
+pipeline{
+        agent any
+        stages{
+            stage("stage1 : checkout stage"){
+                steps{
+                    git branch :'main' , url: 'https://github.com/shru-h/first-java-repo'
+            
+                }
+            }
+            stage("stage2 : compile the code"){
+                steps{
+                    bat "mvn compile"
+                }
+            }
+            stage("stage3 : unit test"){
+                steps{
+                    bat "mvn test"
+                }
+            }
+            stage("stage4 : QA"){
+                steps{
+                    bat "mvn pmd:pmd"
+                }
+            }
+            stage("stage5 : package"){
+                steps{
+                    bat "mvn package"
+            }
+    
+        }
+    }
+}
